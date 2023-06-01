@@ -1,29 +1,12 @@
-class hangmanGame
+class HangmanGame
   attr_accessor :secret_code, :countdown
 
-  def initialize()
-    @secret_code = []
-    @countdown = 10
+  def initialize(secret_code = [], countdown = 10)
+    @secret_code = secret_code
+    @countdown = countdown
   end
 
-  def self.start_game()
-    puts "start new game (1) or continue recent one (2)?:"
-    new_or_old = gets.chomp
-
-    if new_or_old == 1
-      start_new_game()
-    elsif new_or_old == 2
-      continue_old_game()
-    end
-  end
-
-  def continue_old_game()
-    # load secret code and countdown 
-    # set those
-    # start_new_game
-  end
-
-  def start_new_game()
+  def start_game()
     # unless countdown == 0 do
       # choice: pick letter(continue game), save game or quit game
   end
