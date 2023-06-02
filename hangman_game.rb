@@ -10,6 +10,7 @@ class HangmanGame
     print_secret_code()
 
     until countdown == 0
+      print_true_false()
       puts "Choose: quit game (q), save game (s) or pick a letter (l):"
       game_mode = gets.chomp
       until ["q","s","l"].include?(game_mode)
@@ -64,22 +65,16 @@ class HangmanGame
 
   def continue_game()
     print_display()
-    puts pick_letter()
-    # check if picked_letter is included in secret code
-      # yes: update_guessed_letters()
-      #     if word is guessed:
-      #         announce_player_wins()
-      #     else: retrun
-      # no: decrease_countdown()
-      #     return
+    selected_letter = pick_letter()
+    if self.secret_code.any? {|hash| hash[:letter] == selected_letter}
+      update_guessed_letters(selected_letter)
+      check_win()
+    else
+      decrease_countdown()
+    end
   end
 
   def pick_letter()
-    # let player pick letter
-    # check if letter is a letter and not specail sign
-    # if not letter: warning + pick_letter()
-    # upcase letter
-    # return letter
     puts "select one letter:"
     input = gets.chomp.upcase
     ascii_number = input.ord
@@ -89,6 +84,20 @@ class HangmanGame
       ascii_number = input.ord
     end
     return input
+  end
+
+  def update_guessed_letters(selected_letter)
+    self.secret_code.each do |hash|
+      if hash[:letter] == selected_letter
+        hash[:found] = true
+      end
+    end
+  end
+
+  def check_win()
+    if self.secret_code.all?{|hash| hash[:found] == true}
+      announce_player_wins()
+    end
   end
 
   def decrease_countdown()
@@ -114,6 +123,11 @@ class HangmanGame
 
   def print_secret_code()
     self.secret_code.each {|hash| print hash[:letter]}
+    puts ''
+  end
+
+  def print_true_false()
+    self.secret_code.each {|hash| print "#{hash[:found]} "}
     puts ''
   end
 
