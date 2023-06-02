@@ -64,7 +64,7 @@ class HangmanGame
 
   def continue_game()
     print_display()
-    # pick_letter()
+    puts pick_letter()
     # check if picked_letter is included in secret code
       # yes: update_guessed_letters()
       #     if word is guessed:
@@ -80,6 +80,15 @@ class HangmanGame
     # if not letter: warning + pick_letter()
     # upcase letter
     # return letter
+    puts "select one letter:"
+    input = gets.chomp.upcase
+    ascii_number = input.ord
+    until input.length == 1 && ascii_number.between?(65, 90)
+      puts "select one letter:"
+      input = gets.chomp.upcase
+      ascii_number = input.ord
+    end
+    return input
   end
 
   def decrease_countdown()
