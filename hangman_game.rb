@@ -8,10 +8,12 @@ class HangmanGame
 
   def play()
     print_secret_code()
+    puts ''
 
+    print_display()
     until countdown == 0
-      print_true_false()
-      puts "Choose: quit game (q), save game (s) or pick a letter (l):"
+      #print_true_false()
+      print "Choose: quit game (q), save game (s) or pick a letter (l):"
       game_mode = gets.chomp
       until ["q","s","l"].include?(game_mode)
         puts "Choose: quit game (q), save game (s) or pick a new letter (l):"
@@ -49,8 +51,9 @@ class HangmanGame
   end
 
   def print_display()
-    display_guessed_letters()
-    puts "\nremaining guesses: #{self.countdown}"
+    print "remaining guesses: #{self.countdown}   "
+    display_guessed_letters()   
+    puts ' ' 
   end
 
   def display_guessed_letters()
@@ -61,21 +64,23 @@ class HangmanGame
         print '___  '
       end
     end
+    puts ''
   end
 
   def continue_game()
-    print_display()
     selected_letter = pick_letter()
     if self.secret_code.any? {|hash| hash[:letter] == selected_letter}
       update_guessed_letters(selected_letter)
+      print_display()
       check_win()
     else
       decrease_countdown()
+      print_display()
     end
   end
 
   def pick_letter()
-    puts "select one letter:"
+    print "select one letter:"
     input = gets.chomp.upcase
     ascii_number = input.ord
     until input.length == 1 && ascii_number.between?(65, 90)
