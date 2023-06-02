@@ -9,10 +9,10 @@ unless [1,2].include?(new_or_old)
 end
 
 if new_or_old == 1
-  HangmanGame.new().start_game
+  HangmanGame.new().play
 elsif new_or_old == 2
   # load secret code and countdown 
   # set those
   # start_new_game
-  HangmanGame.new(secret_code, countdown).start_game
+  HangmanGame.new(secret_code, countdown).play
 end

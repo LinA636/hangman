@@ -1,14 +1,30 @@
 class HangmanGame
   attr_accessor :secret_code, :countdown
 
-  def initialize(secret_code = [], countdown = 10)
+  def initialize(secret_code = select_word_from_dict(), countdown = 10)
     @secret_code = secret_code
     @countdown = countdown
   end
 
-  def start_game()
+  def play()
+
     # unless countdown == 0 do
       # choice: pick letter(continue game), save game or quit game
+      unless countdown == 0
+        puts "Choose: quit game (q), save game (s) or pick a letter (p):"
+        game_mode = gets.chomp
+        unless ["q","s","p"].include?(game_mode)
+          puts "Choose: quit game (q), save game (s) or pick a letter (p):"
+          game_mode = gets.chomp
+        end
+        if game_mode == "q"
+          quit_game()
+        elsif game_mode == "s"
+          save_game()
+        elsif game_mode == "p"
+          continue_game()
+        end
+      end
   end
 
   private
