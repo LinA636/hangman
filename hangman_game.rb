@@ -13,20 +13,21 @@ class HangmanGame
     print_display()
     until countdown == 0
       #print_true_false()
-      print "Choose: quit game (q), save game (s) or pick a letter (l):"
+      print "Choose: quit game (0), save game (1) or pick a new letter (2):"
       game_mode = gets.chomp
-      until ["q","s","l"].include?(game_mode)
-        puts "Choose: quit game (q), save game (s) or pick a new letter (l):"
+      until ["0","1","2"].include?(game_mode)
+        puts "Choose: quit game (0), save game (1) or pick a new letter (2):"
         game_mode = gets.chomp
       end
-      if game_mode == "q"
+      if game_mode == "0"
         quit_game()
-      elsif game_mode == "s"
+      elsif game_mode == "1"
         save_game()
-      elsif game_mode == "l"
+      elsif game_mode == "2"
         continue_game()
       end
     end
+    announce_player_looses()
   end
 
   private
@@ -111,6 +112,11 @@ class HangmanGame
 
   def announce_player_wins()
     puts "Congrats, you guessed the secret word!"
+    quit_game()
+  end
+
+  def announce_player_looses()
+    puts "You dont hava any more guesses left. You lost."
     quit_game()
   end
 
