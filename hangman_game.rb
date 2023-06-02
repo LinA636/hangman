@@ -7,10 +7,12 @@ class HangmanGame
   end
 
   def play()
+    print_secret_code()
+
     until countdown == 0
-      puts "Choose: quit game (q), save game (s) or pick a letter (p):"
+      puts "Choose: quit game (q), save game (s) or pick a letter (l):"
       game_mode = gets.chomp
-      until ["q","s","p"].include?(game_mode)
+      until ["q","s","l"].include?(game_mode)
         puts "Choose: quit game (q), save game (s) or pick a new letter (l):"
         game_mode = gets.chomp
       end
@@ -34,7 +36,6 @@ class HangmanGame
         possible_words.push(line.upcase)
       end
     end
-
     rand_word_letter_arr = possible_words[rand(possible_words.length)].split('')
     help_hash_array = []
     rand_word_letter_arr.each do |letter|
@@ -52,14 +53,17 @@ class HangmanGame
   end
 
   def display_guessed_letters()
-    # for each unguessed letter (found == false) display _
-    # for each guessed letter display letter
+    self.secret_code.each do |hash|
+      if hash[:found]
+        print hash[:letter] + '  '
+      else
+        print '___  '
+      end
+    end
   end
 
   def continue_game()
-    puts "C"
-    # self.secret_code= create_secret_code()
-    # print_display()
+    print_display()
     # pick_letter()
     # check if picked_letter is included in secret code
       # yes: update_guessed_letters()
@@ -97,6 +101,11 @@ class HangmanGame
 
   def quit_game()
     exit
+  end
+
+  def print_secret_code()
+    self.secret_code.each {|hash| print hash[:letter]}
+    puts ''
   end
 
 end
