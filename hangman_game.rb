@@ -22,7 +22,7 @@ class HangmanGame
       if game_mode == "0"
         quit_game()
       elsif game_mode == "1"
-        save_game()
+        return save_game()
       elsif game_mode == "2"
         continue_game()
       end
@@ -121,11 +121,12 @@ class HangmanGame
   end
 
   def save_game()
-    puts "S"
+    return "save"
     # serialize game
     # safe: secret_code and countdown
     # save in file
     # quit_game()
+    
   end
 
   def quit_game()

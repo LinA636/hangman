@@ -1,0 +1,2 @@
+o:HangmanGame:@secret_code[{:letterI"H:ET:
+foundF{;I"O;T;	T{;I"L;T;	T{;I"M;T;	F{;I"E;T;	T{;I"S;T;	F:@countdowni
