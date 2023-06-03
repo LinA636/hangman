@@ -7,9 +7,6 @@ class HangmanGame
   end
 
   def play()
-    print_secret_code()
-    puts ''
-
     print_display()
     until countdown == 0
       #print_true_false()
@@ -131,16 +128,6 @@ class HangmanGame
 
   def quit_game()
     exit
-  end
-
-  def print_secret_code()
-    self.secret_code.each {|hash| print hash[:letter]}
-    puts ''
-  end
-
-  def print_true_false()
-    self.secret_code.each {|hash| print "#{hash[:found]} "}
-    puts ''
   end
 
 end
